@@ -28,6 +28,8 @@ const BC_HAIR = "hair";
 const DIET_HERBIVORE = "herbivore";
 const DIET_CARNIVORE = "carnivore";
 const DIET_OMNIVORE = "omnivore";
+const DIET_SCAVENGER = "scavenger";
+const DIET_DECOMPOSER = "decomposer";
 
 //Wing variety
 const WING_NONE = "none";
@@ -148,9 +150,18 @@ function Animal(overrides={}) {
         }
     }
 
+    this.isAlive = function() { return this.hp > 0; }
+
     this.eyeSightLevel = ES_GOOD;
     this.smellLevel = SM_DOG;
     this.hearingLevel = HL_GOOD;
+
+    this.age = 1;
+    this.averageLifeSpan = 12;
+    this.ageEndOfInfancy = 2;
+
+    this.survivableTemperatureRangeMin = 32;
+    this.survivableTemperatureRangeMax = 110;
     
     //Perform overrides for replacing defaults in instantiation
     for(let v in overrides) { this[v] = overrides[v]; }
